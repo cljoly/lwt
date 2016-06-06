@@ -7,13 +7,16 @@ environment:
     CYGWIN: C:\Cygwin
     CYGSH: C:\Cygwin\bin\bash -lc
   matrix:
-    - COMPILER: 4.01.0
-      SYSTEM: cygwin
-
-    - COMPILER: 4.02.3
-      SYSTEM: cygwin
+    - {SYSTEM: cygwin, COMPILER: 4.01}
+    - {SYSTEM: cygwin, COMPILER: 4.02}
 
 install:
+  - appveyor DownloadFile https://aantron.github.io/binaries/%SYSTEM%/x86/ocaml/%COMPILER%/install.ps1
+  - ps: .\install.ps1
+  - appveyor DownloadFile https://aantron.github.io/binaries/%SYSTEM%/x86/camlp4/%COMPILER%/install.ps1
+  - ps: .\install.ps1
+  - appveyor DownloadFile https://aantron.github.io/binaries/%SYSTEM%/x86/opam/1.2/install.ps1
+  - ps: .\install.ps1
   - utils\appveyor-%SYSTEM%-install.bat
 
 build_script:
