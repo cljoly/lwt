@@ -17,7 +17,7 @@ install:
   - ps: .\install.ps1
   - appveyor DownloadFile https://aantron.github.io/binaries/%SYSTEM%/x86/opam/1.2/install.ps1
   - ps: .\install.ps1
-  - utils\appveyor-%SYSTEM%-install.bat
+  - '%CYGSH% "cd /cygdrive/c/projects/lwt ; utils/appveyor-%SYSTEM%-install.sh"'
 
 build_script:
-  - utils\appveyor-%SYSTEM%-build.bat
+  - '%CYGSH% "cd /cygdrive/c/projects/lwt ; utils/appveyor-%SYSTEM%-build.sh"'
